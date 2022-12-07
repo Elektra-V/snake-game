@@ -1,6 +1,5 @@
 import sys, pygame
 
-
 def main():
     pygame.init()
 
@@ -17,14 +16,14 @@ def main():
     screen = pygame.display.set_mode(size)
 
     # TODO: load snake image (rectangle)
-    # ball = pygame.image.load("intro_ball.gif")
+    #snake = pygame.image.load("intro_ball.gif")
 
     color = (255, 0, 0)
     rect = pygame.Rect(30, 30, 80, 80)
     snake = pygame.draw.rect(screen, color, rect)
-
+    
     # get image into rectangle
-    # ballrect = ball.get_rect()
+    #ballrect = ball.get_rect()
 
     # FPS
     while True:
@@ -32,7 +31,9 @@ def main():
             if event.type == pygame.QUIT:
                 # TODO: snake collision with own tail
                 # TODO: snake collision with edge of display
-                sys.exit()
+                #pygame.draw.rect(screen,color,[200,150,10,10])
+                pygame.display.update(snake)
+        sys.exit()      
 
     #     ballrect = ballrect.move(speed)
     #
