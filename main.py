@@ -19,9 +19,12 @@ def main():
     #snake = pygame.image.load("intro_ball.gif")
 
     color = (255, 0, 0)
-    rect = pygame.Rect(30, 30, 80, 80)
+    snake_width, snake_height = 5, 5
+    snake_x, snake_y = 500, 250
+    rect = pygame.Rect((snake_x,snake_y),(snake_width, snake_height))
+    #rect2 = pygame.Rect(snake_width, snake_width, snake_x+10, snake_y)
     snake = pygame.draw.rect(screen, color, rect)
-    
+    #snake2 = pygame.draw.rect(screen, color, rect2)
     # get image into rectangle
     #ballrect = ball.get_rect()
 
@@ -29,12 +32,18 @@ def main():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
                 # TODO: snake collision with own tail
                 # TODO: snake collision with edge of display
-                #pygame.draw.rect(screen,color,[200,150,10,10])
-                pygame.display.update(snake)
-        sys.exit()      
-
+                #pygame.draw.rect(screen,color,[200,150,10,10])    
+            if event.type == pygame.KEYDOWN:    
+            # checking if key "A" was pressed
+                if event.key == pygame.K_q:
+                    #print("x is pressed")
+                    pygame.quit()
+                    sys.exit()
+        pygame.display.update(snake)
     #     ballrect = ballrect.move(speed)
     #
     #     # collision within x axis
@@ -50,9 +59,9 @@ def main():
     #     # randomly create food (circles)
     #     # when head of snake eats food, grow +1
     #
-        screen.fill(black)
-        screen.blit(screen, snake)
-        pygame.display.flip()
+        #screen.fill(black)
+        #screen.blit(screen, snake)
+        #pygame.display.flip()
 
 
 if __name__ == "__main__":
