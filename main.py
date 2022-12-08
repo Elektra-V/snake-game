@@ -1,4 +1,5 @@
-import sys, pygame
+import pygame
+import sys
 
 def main():
     pygame.init()
@@ -19,7 +20,15 @@ def main():
     #snake = pygame.image.load("intro_ball.gif")
 
     color = (255, 0, 0)
-    rect = pygame.Rect(30, 30, 80, 80)
+
+    # snake location
+    snake_x, snake_y = 50, 50
+
+    # snake size
+    snake_width, snake_height = 10, 10
+
+    rect = pygame.Rect(snake_x, snake_y, snake_width, snake_height)
+
     snake = pygame.draw.rect(screen, color, rect)
     
     # get image into rectangle
@@ -27,13 +36,23 @@ def main():
 
     # FPS
     while True:
+        # Monitoring events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    print("Key Q has been pressed")
+                    pygame.quit()
+                    sys.exit()
+
                 # TODO: snake collision with own tail
                 # TODO: snake collision with edge of display
-                #pygame.draw.rect(screen,color,[200,150,10,10])
-                pygame.display.update(snake)
-        sys.exit()      
+                # pygame.draw.rect(screen,color,[200,150,10,10])
+
+        pygame.display.update(snake)
 
     #     ballrect = ballrect.move(speed)
     #
@@ -50,9 +69,9 @@ def main():
     #     # randomly create food (circles)
     #     # when head of snake eats food, grow +1
     #
-        screen.fill(black)
-        screen.blit(screen, snake)
-        pygame.display.flip()
+        # screen.fill(black)
+        # screen.blit(screen, snake)
+        # pygame.display.flip()
 
 
 if __name__ == "__main__":
