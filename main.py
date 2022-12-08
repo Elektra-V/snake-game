@@ -38,9 +38,21 @@ def main():
 
     snake_array = create_snake()
     snake = []
+    temp_snake = []
     for rect in snake_array:
         snake_part = pygame.draw.rect(screen, color, rect)
-        snake.append(snake_part)
+        snake.append(snake_part) 
+
+    # for rect in snake:
+    #     # print(type(rect))
+    #     # print(rect)
+    #     # print(i)
+    #     new_rect = rect.move(20,0)
+    #     #rect = new_rect[i]
+    #     temp_snake.append(new_rect)
+    # print(temp_snake)
+    # snake = temp_snake
+    # print(snake)
 
     # FPS
     while True:
@@ -57,8 +69,15 @@ def main():
                     #print("x is pressed")
                     pygame.quit()
                     sys.exit()
-
+        for rect in snake:
+            new_rect = rect.move(20,0)
+            temp_snake.append(new_rect)
+        print(temp_snake)
+        snake = temp_snake
+        print(snake)
+        temp_snake=[]            
         pygame.display.update(snake)
+
     #     ballrect = ballrect.move(speed)
     #
     #     # collision within x axis
