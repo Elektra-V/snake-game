@@ -1,4 +1,5 @@
 import sys, pygame
+import time
 
 
 def main():
@@ -9,7 +10,7 @@ def main():
     size = (width, height)
 
     # movement speed
-    speed = [1, 1]
+    speed = [20, 0]
 
     black = 0, 0, 0
 
@@ -36,23 +37,15 @@ def main():
 
         return snake_array
 
-    snake_array = create_snake()
+    # init snake
     snake = []
-    temp_snake = []
+    snake_array = create_snake()
     for rect in snake_array:
         snake_part = pygame.draw.rect(screen, color, rect)
         snake.append(snake_part) 
 
-    # for rect in snake:
-    #     # print(type(rect))
-    #     # print(rect)
-    #     # print(i)
-    #     new_rect = rect.move(20,0)
-    #     #rect = new_rect[i]
-    #     temp_snake.append(new_rect)
-    # print(temp_snake)
-    # snake = temp_snake
-    # print(snake)
+    # moved snake
+    temp_snake = []
 
     # FPS
     while True:
@@ -62,24 +55,24 @@ def main():
                 sys.exit()
                 # TODO: snake collision with own tail
                 # TODO: snake collision with edge of display
-                #pygame.draw.rect(screen,color,[200,150,10,10])    
+
             if event.type == pygame.KEYDOWN:    
-            # checking if key "A" was pressed
                 if event.key == pygame.K_q:
-                    #print("x is pressed")
                     pygame.quit()
                     sys.exit()
-        for rect in snake:
-            new_rect = rect.move(20,0)
-            temp_snake.append(new_rect)
-        print(temp_snake)
-        snake = temp_snake
-        print(snake)
-        temp_snake=[]            
-        pygame.display.update(snake)
 
-    #     ballrect = ballrect.move(speed)
-    #
+        for rect in snake:
+            new_rect = rect.move(speed)
+            pygame.draw.rect(screen, (255, 255, 255), new_rect)
+            temp_snake.append(new_rect)
+
+        snake = temp_snake
+        temp_snake = []
+
+        # render draw stuff
+        pygame.display.update(snake)
+        time.sleep(1)
+
     #     # collision within x axis
     #     if ballrect.left < 0 or ballrect.right > width:
     #         # direction
@@ -93,9 +86,9 @@ def main():
     #     # randomly create food (circles)
     #     # when head of snake eats food, grow +1
     #
-        # screen.fill(black)
+        screen.fill(black)
         # screen.blit(screen, snake)
-        # pygame.display.flip()
+        pygame.display.flip()
 
 
 
