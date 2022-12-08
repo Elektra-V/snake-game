@@ -17,14 +17,25 @@ def main():
 
     # TODO: load snake image (rectangle)
     #snake = pygame.image.load("intro_ball.gif")
-
+    snake_fig = []
     color = (255, 0, 0)
     snake_width, snake_height = 5, 5
     snake_x, snake_y = 500, 250
     rect = pygame.Rect((snake_x,snake_y),(snake_width, snake_height))
-    #rect2 = pygame.Rect(snake_width, snake_width, snake_x+10, snake_y)
     snake = pygame.draw.rect(screen, color, rect)
-    #snake2 = pygame.draw.rect(screen, color, rect2)
+
+    """ manually trying to append snake two times in below commneted code and it is working"""
+    # rect2 = pygame.Rect((snake_x+10,snake_y),(snake_width, snake_height))
+    # snake2 = pygame.draw.rect(screen, color, rect2)
+    # snake_fig.append(snake)
+    # snake_fig.append(snake2)
+
+    while len(snake_fig) < 3:
+        snake_fig.append(snake)
+        snake_x += 10
+        print(snake_x)
+    return snake_fig
+
     # get image into rectangle
     #ballrect = ball.get_rect()
 
@@ -43,7 +54,7 @@ def main():
                     #print("x is pressed")
                     pygame.quit()
                     sys.exit()
-        pygame.display.update(snake)
+        pygame.display.update(snake_fig)
     #     ballrect = ballrect.move(speed)
     #
     #     # collision within x axis
