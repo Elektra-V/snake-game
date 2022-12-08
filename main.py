@@ -1,5 +1,6 @@
 import sys, pygame
 
+
 def main():
     pygame.init()
 
@@ -16,28 +17,30 @@ def main():
     screen = pygame.display.set_mode(size)
 
     # TODO: load snake image (rectangle)
-    #snake = pygame.image.load("intro_ball.gif")
-    snake_fig = []
+
+    # array of snake body parts
+    # snake_fig = []
     color = (255, 0, 0)
-    snake_width, snake_height = 5, 5
-    snake_x, snake_y = 500, 250
-    rect = pygame.Rect((snake_x,snake_y),(snake_width, snake_height))
-    snake = pygame.draw.rect(screen, color, rect)
 
-    """ manually trying to append snake two times in below commneted code and it is working"""
-    # rect2 = pygame.Rect((snake_x+10,snake_y),(snake_width, snake_height))
-    # snake2 = pygame.draw.rect(screen, color, rect2)
-    # snake_fig.append(snake)
-    # snake_fig.append(snake2)
+    def create_snake(snake_length: int = 3):
+        """manually trying to append snake two times in below commneted code and it is working"""
+        snake_width, snake_height = 15, 15
+        snake_x, snake_y = 500, 250
 
-    while len(snake_fig) < 3:
-        snake_fig.append(snake)
-        snake_x += 10
-        print(snake_x)
-    return snake_fig
+        growth = 20
+        snake_array = []
+        for _ in range(snake_length):
+            rect = pygame.Rect((snake_x + growth, snake_y), (snake_width, snake_height))
+            snake_array.append(rect)
+            growth += 20
 
-    # get image into rectangle
-    #ballrect = ball.get_rect()
+        return snake_array
+
+    snake_array = create_snake()
+    snake = []
+    for rect in snake_array:
+        snake_part = pygame.draw.rect(screen, color, rect)
+        snake.append(snake_part)
 
     # FPS
     while True:
@@ -54,7 +57,8 @@ def main():
                     #print("x is pressed")
                     pygame.quit()
                     sys.exit()
-        pygame.display.update(snake_fig)
+
+        pygame.display.update(snake)
     #     ballrect = ballrect.move(speed)
     #
     #     # collision within x axis
@@ -70,10 +74,12 @@ def main():
     #     # randomly create food (circles)
     #     # when head of snake eats food, grow +1
     #
-        #screen.fill(black)
-        #screen.blit(screen, snake)
-        #pygame.display.flip()
+        # screen.fill(black)
+        # screen.blit(screen, snake)
+        # pygame.display.flip()
+
 
 
 if __name__ == "__main__":
     main()
+
